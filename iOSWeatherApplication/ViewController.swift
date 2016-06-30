@@ -15,6 +15,10 @@ class ViewController: UIViewController {
         
         // Initial commit
         
+        let cityWeather =  CityWeatherViewModel()
+        cityWeather.getWeatherForcast("London");
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

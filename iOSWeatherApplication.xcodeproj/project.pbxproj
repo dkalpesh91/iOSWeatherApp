@@ -70,14 +70,13 @@
 		E61BD16A1D23B0CF0062F747 /* iOSWeatherApplication */ = {
 			isa = PBXGroup;
 			children = (
+				E6F62BAE1D27E41100AAFBE4 /* View */,
 				E6F62BA91D27C82200AAFBE4 /* ViewController */,
 				E6FB036B1D24C15700B35ECF /* Model */,
 				E6FB03681D24B94700B35ECF /* ViewModel */,
 				E6FB03651D24B5D100B35ECF /* Utils */,
 				E61BD16B1D23B0CF0062F747 /* AppDelegate.swift */,
-				E61BD16F1D23B0CF0062F747 /* Main.storyboard */,
 				E61BD1721D23B0CF0062F747 /* Assets.xcassets */,
-				E61BD1741D23B0CF0062F747 /* LaunchScreen.storyboard */,
 				E61BD1771D23B0CF0062F747 /* Info.plist */,
 			);
 			path = iOSWeatherApplication;
@@ -90,6 +89,15 @@
 				E6F62BAC1D27C8EF00AAFBE4 /* WeatherDetailsViewController.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		E6F62BAE1D27E41100AAFBE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E61BD16F1D23B0CF0062F747 /* Main.storyboard */,
+				E61BD1741D23B0CF0062F747 /* LaunchScreen.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		E6FB03651D24B5D100B35ECF /* Utils */ = {

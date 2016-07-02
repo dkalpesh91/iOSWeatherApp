@@ -14,12 +14,17 @@ class ViewController: UIViewController,CLLocationManagerDelegate,CityWeatherResp
     
     @IBOutlet weak var cityTextField: UITextField!
     
+    var isGpsRequest : Bool = false
+    
     
     let cityWeatherViewModel = CityWeatherViewModel()
     
-    let coordinate: (lat: Double, lon: Double) = (37.8267,-122.423)
+    //let coordinate: (lat: Double, lon: Double) = (37.8267,-122.423)
     
     var weatherDetails : NSDictionary?
+    
+    var latitude : Double?
+    var longitude : Double?
     
     
     var locationManager: CLLocationManager = CLLocationManager()
@@ -27,6 +32,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,CityWeatherResp
     override func viewDidLoad() {
         super.viewDidLoad()
         self.cityWeatherViewModel.delegate = self
+        
+        
         
         
         
@@ -44,12 +51,21 @@ class ViewController: UIViewController,CLLocationManagerDelegate,CityWeatherResp
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        if latitude != nil && latitude != nil {
+        cityWeatherViewModel.getWeatherDetailsForCityUsingGpsLocation(latitude!, longitude: longitude!)
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Featch GPS co-ordinate fails ", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+
+        }
+        
         
     }
     
     func retrieveWeatherForecast() {
         
-        
+       // this is simple request so send latitude and logitude nil
       cityWeatherViewModel.getWeatherDetailsForCity(cityTextField.text!)
         
         
@@ -66,8 +82,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate,CityWeatherResp
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
          print("Ready with GPS Co-oridinate");
         let latestLocation: AnyObject = locations[locations.count - 1]
+        latitude = latestLocation.coordinate.latitude
+        longitude = latestLocation.coordinate.longitude
         print(String(format: "%.4f",latestLocation.coordinate.latitude))
-        print(String(format: "%.4f",latestLocation.coordinate.longitude))
+        print(String(format: "%.4f", latestLocation.coordinate.longitude))
         
         
     }

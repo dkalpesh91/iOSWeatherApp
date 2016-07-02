@@ -21,6 +21,8 @@ struct  UrlConstant {
     static let NO_OF_WEATHER_DAYS = 14
     static let OPENWEATHERMAP_API_KEY = "5d9c132c86bbbe2d1a18d8d556c9d491"
     static let MODE = DataFormat.JSON
+    static let UNITS = "metric"
+    static let HTTP_SUCCESS = 200
     
     //http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=xml&units=metric&cnt=7&appid=b1b15e88fa797225412429c1c50c122a
     

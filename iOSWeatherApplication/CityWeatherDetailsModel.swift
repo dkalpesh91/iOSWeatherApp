@@ -8,91 +8,55 @@
 
 import Foundation
 
-struct CityWeatherDetailsModel {
-    let city : CityDetailsModel?
-    let numberOfDaysWeather : Int?
-    let cooridinate :CoordModel?
-    let wetherDetailsList : CityWeatherListModel?
+class CityWeatherDetailsModel {
+    var cityName : String?
+    var countryCode : String?
+    
+    var lat : Double?
+    var lon : Double?
+    
+    var numberOfDaysWeather : Int?
+    
+    var cityWeatherList : [CityWeatherListModel]
     
     
-    init(city:CityDetailsModel,numberOfDaysWeather:Int,coord:CoordModel,wetherDetailsList:CityWeatherListModel) {
-        self.city = city
-        self.numberOfDaysWeather = numberOfDaysWeather
-        self.cooridinate = coord
-        self.wetherDetailsList = wetherDetailsList
+    init(cityName:String,countryCode:String,lat:Double,lon:Double,numberOfWeatherDay:Int,cityWeatherList:[CityWeatherListModel]){
         
+            self.cityName = cityName
+            self.countryCode = countryCode
+            self.lat = lat
+            self.lon = lon
+            self.numberOfDaysWeather = numberOfWeatherDay
+        
+            self.cityWeatherList = cityWeatherList
+        
+    
     }
 }
 
-struct CityDetailsModel {
+class CityWeatherListModel {
+    var clouds : Int?
+    var pressure : Double?
+    var speed : Double?
+    var humidity : Int?
+    var rain : Double?
+    var date : NSDate?
     
-    let cityName : String?
-    let countryCode : String?
+    var temp : Double?
     
-    init(cityName:String,countrycode:String){
-        self.cityName = cityName
-        self.countryCode = countrycode
-    }
-    
-    
-}
-
-struct CityWeatherListModel {
-    
-    let clouds : Int?
-    let pressure : Double?
-    let speed : Double?
-    let humidity : Int?
-    let rain : Int?
-    let temp : TemperatureModel?
-    let weather : WeatherDescriptionModel?
-    
-    init(clouds:Int,pressure:Double,speed:Double,humidity:Int,rain:Int,temp:TemperatureModel,weather:WeatherDescriptionModel){
-        self.clouds = clouds
-        self.pressure = pressure
-        self.speed = speed;
-        self.humidity = humidity
-        self.rain = rain
-        self.temp = temp
-        self.weather = weather
-    }
-    
-    
-    
-}
-
-struct TemperatureModel {
-    
-    let day : Double?
-    let eve : Double?
-    let max : Double?
-    let min : Double?
-    let morn : Double?
-    let night : Double?
-    
-    init(day:Double,eve:Double,max:Double,min:Double,morn:Double,night:Double){
-        self.day = day
-        self.eve = eve
-        self.max = max
-        self.min = min
-        self.morn = morn
-        self.night = night
-    }
-    
-}
-
-struct CoordModel {
-    let lat : Double?
-    let lon : Double?
-}
-
-
-struct WeatherDescriptionModel {
     var description : String?
     var season: String?
     
-    init(description:String,season:String) {
-        self.description = description;
-        self.season = description
+    init(clouds:Int,pressure:Double,humidity:Int,rain:Double,date:NSDate,temp:Double,description:String,season:String){
+        self.clouds = clouds
+        self.pressure = pressure
+        self.humidity = humidity
+        self.rain = rain
+        self.date = date
+        self.temp = temp
+        self.description = description
+        self.season = season
     }
+
 }
+

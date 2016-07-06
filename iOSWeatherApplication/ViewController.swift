@@ -115,7 +115,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,CityWeatherResp
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "detailsScreen" {
             let detailsViewController = segue.destinationViewController as! WeatherDetailsViewController
-            detailsViewController.weatherDetails = weatherDetails
+            detailsViewController.weatherDetailsData = weatherDetails
         }
     }
 

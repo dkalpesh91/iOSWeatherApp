@@ -10,11 +10,12 @@ import UIKit
 
 class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    var weatherDetails : NSDictionary?
+    var weatherDetailsData : NSDictionary?
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var numberOfDaysWetherShowLabel: UILabel!
     @IBOutlet weak var countryCodeLable: UILabel!
     
+    var weatherDetailsViewModel = WeatherDetailsViewModel()
     
     
     
@@ -24,9 +25,33 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("oh no \(weatherDetails!)")
-
-        // Do any additional setup after loading the view.
+        print("oh no \(weatherDetailsData!)")
+        
+        if weatherDetailsData != nil {
+            
+            weatherDetailsViewModel.getData(weatherDetailsData!,index: 0)
+            
+//           cityDetailsModel = CityDetailsModel(cityName: cityDetailsModel1.objectForKey("name") as! String , countrycode: weatherDetailsData!.objectForKey("cnt")!.integerValue, coord: <#T##Dictionary<String, CoordinateModel>#>)
+//            print("hehhehehhehee \(cityDetailsModel1)")
+            
+            
+//            cityWeatherDetailsModel = CityWeatherDetailsModel(city: ["city":cityDetailsModel!], numberOfDaysWeather: (weatherDetailsData!.objectForKey("cnt")!.integerValue), wetherDetailsList: (weatherDetailsData?.objectForKey("list"))! as! Array<CityWeatherListModel>)
+//            print("this is count \(cityWeatherDetailsModel?.numberOfDaysWeather)")
+//            print("this is city \(cityWeatherDetailsModel?.city)")
+//            print("this is list \(cityWeatherDetailsModel?.wetherDetailsList)")
+            
+            
+//        cityDetailsModel = CityDetailsModel(cityName: weatherDetailsData?.objectForKey("city")?.objectForKey("country") as! String, countrycode: weatherDetailsData?.objectForKey("city")?.objectForKey("country") as! String, coord: weatherDetailsData?.objectForKey("city")?.objectForKey("coord") as! CoordinateModel)
+//            print("coordinate \(cityDetailsModel?.cooridinate?.lat)")
+//
+//        cityWeatherDetailsModel = CityWeatherDetailsModel(city: cityDetailsModel!, numberOfDaysWeather: weatherDetailsData!.objectForKey("cnt")!.integerValue, coord: <#T##CoordinateModel#>, wetherDetailsList: <#T##CityWeatherListModel#>)
+//        cityNameLabel.text =
+            
+            
+            
+//        countryCodeLable.text = weatherDetailsData?.objectForKey("city")?.objectForKey("country") as? String
+//        numberOfDaysWetherShowLabel.text = String(weatherDetailsData!.objectForKey("cnt")!.integerValue)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +76,7 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
         
         
         let date  = UILabel(frame: CGRectMake(120,-5,300,44))
-        let weatherDetails  = UILabel(frame: CGRectMake(120,15,300,44))
+        let weatherDate  = UILabel(frame: CGRectMake(120,15,300,44))
         
         
         
@@ -61,12 +86,17 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
         DynamicView.layer.borderWidth = 1
         DynamicView.layer.cornerRadius = 5
         
+        if weatherDetailsData != nil {
+        //    self.setDate()
+          //  self.setDate((weatherDetailsData?.objectForKey("list")? as NSArray.[section].objectForKey("dt") as DataFormat)
+        }
+        
         let rupees = "(\u{20B9})"
         
         if section==0{
             date.textColor = UIColor.orangeColor()
             date.text = "Weather Date"
-            weatherDetails.text = "Weather Date disp"
+            weatherDate.text = "Weather Date disp"
             
         }
 //        if section==1{
@@ -94,11 +124,10 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
         date.textColor = UIColor.whiteColor()
         DynamicView.addSubview(date)
         
-        weatherDetails.backgroundColor = UIColor.clearColor()
-        //label.shadowColor = UIColor.blackColor()
-        weatherDetails.shadowOffset = CGSizeMake(0,2);
-        weatherDetails.textColor = UIColor.whiteColor()
-        DynamicView.addSubview(weatherDetails)
+        weatherDate.backgroundColor = UIColor.clearColor()
+        weatherDate.shadowOffset = CGSizeMake(0,2);
+        weatherDate.textColor = UIColor.whiteColor()
+        DynamicView.addSubview(weatherDate)
         
         return DynamicView
     }
@@ -160,7 +189,9 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
         
     }
 
-    
+//    func setDate(date:DataFormat) ->DataFormat {
+//        
+//    }
     
 
 }

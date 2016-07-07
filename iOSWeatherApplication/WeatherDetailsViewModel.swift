@@ -11,13 +11,34 @@ import Foundation
 class WeatherDetailsViewModel {
     
     
-    var cityWeatherDetailsModel :CityWeatherDetailsModel?
-    var cityWeatherListModel : CityWeatherListModel?
+    private var cityWeatherDetailsModel :CityWeatherDetailsModel?
+    private var cityWeatherListModel : CityWeatherListModel?
     
     var weatherDetailsData : NSDictionary!
     var index : Int!
     
-    var listDetails : Array<CityWeatherListModel>!
+    private var listDetails = [CityWeatherListModel]()
+    
+    
+    var cityName : String?
+    var countryCode : String?
+    var countDays : Int?
+    var latitude : Double?
+    var longitude : Double?
+    
+    var clouds : Int?
+    var humidity : Int?
+    var pressure : Double?
+    var rain : Double?
+    var speed : Double?
+    var date : String?
+    var description : String?
+    var season : String?
+    var dayTemperature : Double?
+    
+    
+    
+    
     
     func getData(weatherDetailsInfo:NSDictionary) {
         
@@ -35,31 +56,31 @@ class WeatherDetailsViewModel {
         
         let list = weatherDetailsData.objectForKey("list") as! NSArray
         
-        for var i = 0; i<cityWeatherDetailsModel?.cityWeatherList.count ; i++ {
+        for var i = 0; i<list.count ; i++ {
             //list
             
+            var wetherListData = list[i]
             
             
+            let clouds = wetherListData.objectForKey("clouds")?.integerValue ?? 0
+            let humidity = wetherListData.objectForKey("humidity")?.integerValue ?? 0
+            let pressure = wetherListData.objectForKey("pressure")?.doubleValue ?? 0.0
+            let rain = wetherListData.objectForKey("rain")?.doubleValue ?? 0.0
+            let speed = wetherListData.objectForKey("speed")?.doubleValue ?? 0.0
+            let date = wetherListData.objectForKey("dt")?.integerValue ?? 0
             
-            let clouds = list.objectAtIndex(index).objectForKey("clouds")?.integerValue
-            let humidity = list.objectAtIndex(index).objectForKey("humidity")?.integerValue
-            let pressure = list.objectAtIndex(index).objectForKey("pressure")?.doubleValue
-            let rain = list.objectAtIndex(index).objectForKey("rain")?.doubleValue
-           // let speed = list.objectAtIndex(index).objectForKey("speed")?.doubleValue
-            let date = list.objectAtIndex(index).objectForKey("dt") as! NSDate
-            
-            let tempertature = list.objectAtIndex(index).objectForKey("temp") as! NSDictionary
-            let weather = list.objectAtIndex(index).objectForKey("weather") as! NSArray
+            let tempertature = wetherListData.objectForKey("temp") as! NSDictionary
+            let weather = wetherListData.objectForKey("weather") as! NSArray
             
             
             
             // cityWeatherListModel?.date = date
             
-            let description = weather.objectAtIndex(index).objectForKey("description") as! String
-            let season = weather.objectAtIndex(index).objectForKey("main") as! String
-            let dayTemperature = tempertature.objectForKey("day")?.doubleValue
+            let description = weather.objectAtIndex(0).objectForKey("description") as! String ?? "not available"
+            let season = weather.objectAtIndex(0).objectForKey("main") as! String ?? "not available"
+            let dayTemperature = tempertature.objectForKey("day")?.doubleValue ?? 0.0
             
-            cityWeatherListModel = CityWeatherListModel(clouds: clouds!, pressure: pressure!, humidity: humidity!, rain: rain!, date: date, temp: dayTemperature!, description: description, season: season)
+            cityWeatherListModel = CityWeatherListModel(clouds: clouds, pressure: pressure, humidity: humidity, rain: rain, date: date, temp: dayTemperature, description: description, season: season,speed: speed)
             listDetails.append(cityWeatherListModel!)
         }
 
@@ -73,9 +94,36 @@ class WeatherDetailsViewModel {
         
     }
     
+    func getCityDetails(){
+        self.cityName = cityWeatherDetailsModel!.cityName
+        self.countryCode = cityWeatherDetailsModel!.countryCode
+        self.countDays = cityWeatherDetailsModel!.numberOfDaysWeather
+        self.latitude =  cityWeatherDetailsModel!.lat
+        self.longitude = cityWeatherDetailsModel!.lon
+    }
+    
+    
     func getListData(listIndex : Int){
         
         index = listIndex
+        let list = listDetails[index]
+        
+        self.clouds = list.clouds
+        self.humidity = list.humidity
+        self.pressure = list.pressure
+        self.rain = list.rain
+        self.speed = list.speed
+        
+        let dateNSdate = NSDate(timeIntervalSince1970: Double(list.date!))
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        print(dateFormatter.stringFromDate(dateNSdate))
+        
+        self.date = dateFormatter.stringFromDate(dateNSdate)
+        
+        self.description = list.description
+        self.season = list.season
+        self.dayTemperature = list.temp
         
         
         
@@ -84,3 +132,4 @@ class WeatherDetailsViewModel {
     }
     
 }
+

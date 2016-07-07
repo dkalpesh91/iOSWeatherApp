@@ -29,28 +29,11 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
         
         if weatherDetailsData != nil {
             
-            weatherDetailsViewModel.getData(weatherDetailsData!,index: 0)
-            
-//           cityDetailsModel = CityDetailsModel(cityName: cityDetailsModel1.objectForKey("name") as! String , countrycode: weatherDetailsData!.objectForKey("cnt")!.integerValue, coord: <#T##Dictionary<String, CoordinateModel>#>)
-//            print("hehhehehhehee \(cityDetailsModel1)")
-            
-            
-//            cityWeatherDetailsModel = CityWeatherDetailsModel(city: ["city":cityDetailsModel!], numberOfDaysWeather: (weatherDetailsData!.objectForKey("cnt")!.integerValue), wetherDetailsList: (weatherDetailsData?.objectForKey("list"))! as! Array<CityWeatherListModel>)
-//            print("this is count \(cityWeatherDetailsModel?.numberOfDaysWeather)")
-//            print("this is city \(cityWeatherDetailsModel?.city)")
-//            print("this is list \(cityWeatherDetailsModel?.wetherDetailsList)")
-            
-            
-//        cityDetailsModel = CityDetailsModel(cityName: weatherDetailsData?.objectForKey("city")?.objectForKey("country") as! String, countrycode: weatherDetailsData?.objectForKey("city")?.objectForKey("country") as! String, coord: weatherDetailsData?.objectForKey("city")?.objectForKey("coord") as! CoordinateModel)
-//            print("coordinate \(cityDetailsModel?.cooridinate?.lat)")
-//
-//        cityWeatherDetailsModel = CityWeatherDetailsModel(city: cityDetailsModel!, numberOfDaysWeather: weatherDetailsData!.objectForKey("cnt")!.integerValue, coord: <#T##CoordinateModel#>, wetherDetailsList: <#T##CityWeatherListModel#>)
-//        cityNameLabel.text =
-            
-            
-            
-//        countryCodeLable.text = weatherDetailsData?.objectForKey("city")?.objectForKey("country") as? String
-//        numberOfDaysWetherShowLabel.text = String(weatherDetailsData!.objectForKey("cnt")!.integerValue)
+            weatherDetailsViewModel.getData(weatherDetailsData!)
+            weatherDetailsViewModel.getCityDetails()
+            cityNameLabel.text = weatherDetailsViewModel.cityName
+            numberOfDaysWetherShowLabel.text = String(weatherDetailsViewModel.countDays!)
+            countryCodeLable.text = weatherDetailsViewModel.countryCode
         }
     }
 
@@ -93,30 +76,13 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
         
         let rupees = "(\u{20B9})"
         
-        if section==0{
+        weatherDetailsViewModel.getListData(section)
             date.textColor = UIColor.orangeColor()
             date.text = "Weather Date"
-            weatherDate.text = "Weather Date disp"
+            weatherDate.text = weatherDetailsViewModel.date
             
-        }
-//        if section==1{
-//            label.textColor = UIColor.orangeColor()
-//            label.text = "Previous Order"
-//            date.text = "Order Date : \(String(mNoOfOrder1.objectForKey("OrderDate")!))"
-//            ShippingAddress.text = "Shiping Address : \(mNoOfOrder1.objectForKey("ShippingAddress")!)"
-//            price.text = "Total Amount \(rupees) : \(String(mNoOfOrder1.objectForKey("Amount")!.floatValue))"
-//            
-//            //label.text = mResponse .objectAtIndex(section) as? String
-//        }
-//        if section==2
-//        {
-//            label.textColor = UIColor.orangeColor()
-//            label.text = "Previous Order"
-//            date.text = "Order Date : \(String(mNoOfOrder1.objectForKey("OrderDate")!))"
-//            ShippingAddress.text = "Shiping Address : \(mNoOfOrder1.objectForKey("ShippingAddress")!)"
-//            price.text = "Total Amount \(rupees) : \(String(mNoOfOrder1.objectForKey("Amount")!.floatValue))"
-//            // label.text = mResponse .objectAtIndex(section) as? String
-//        }
+        
+
         
         date.backgroundColor = UIColor.clearColor()
         //label.shadowColor = UIColor.blackColor()
@@ -136,55 +102,40 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         
-//        var numOfSections = 0;
-//        if (weatherDetails!.count == 0)
-//        {
-//            
-//            let emptyLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
-//            emptyLabel.text = "No Order History, go and buy product."
-//            emptyLabel.textColor = UIColor.redColor()
-//            orderDetailsTableView.backgroundView = emptyLabel
-//            orderDetailsTableView.separatorStyle = UITableViewCellSeparatorStyle.None
-//            numOfSections = 0;
-//            
-//            
-//        }
-//        else
-//        {
-//            numOfSections = weatherDetails!.count;
-//            
-//        }
-        
-        return 10;
+       
+        return weatherDetailsViewModel.countDays!
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         
-        
-        
-        //return weatherDetails![section]!.count!
         return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCellWithIdentifier("orderDetailsCell", forIndexPath: indexPath)
         
-        // Configure the cell...
-        
+        weatherDetailsViewModel.getListData(indexPath.row)
         
         
         
         let simpleTableIdentifier : String  = "weatherDetailsCell"
         let cell = tableView .dequeueReusableCellWithIdentifier(simpleTableIdentifier, forIndexPath: indexPath) as! WeatherDetailsTableViewCell
-        
-        
-//        cell.productName.text = (productDetails.objectForKey("Product")!.objectForKey("ProductName")) as? String
-//        cell.productCategoryLabel.text = textString
-//        //cell.productDescLabel.text = (productDetails.objectForKey("Product")!.objectForKey("ProductDescription")) as! String
-//        cell.priceLabel.text = price
+     
 //        let imageResponse = ConnectionHelper().getImage((productDetails.objectForKey("Product")!.objectForKey("ProductImage")) as! String)
 //        cell.productImage.image = UIImage(data: imageResponse )
+        
+        
+      //  @IBOutlet weak var wetherIcon: UIImageView!
+        
+        
+        cell.cloudsLable.text = String(weatherDetailsViewModel.clouds!)
+        cell.pressureLabel.text = String(weatherDetailsViewModel.pressure!)
+        cell.speedLabel.text = String(weatherDetailsViewModel.speed!)
+        cell.humidityLabel.text = String(weatherDetailsViewModel.humidity!)
+        cell.rainLabel.text = String(weatherDetailsViewModel.rain!)
+        cell.tempLabel.text = String(weatherDetailsViewModel.dayTemperature!)
+        
+        
+        
         return cell
         
     }

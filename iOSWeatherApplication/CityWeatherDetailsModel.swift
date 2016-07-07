@@ -40,14 +40,14 @@ class CityWeatherListModel {
     var speed : Double?
     var humidity : Int?
     var rain : Double?
-    var date : NSDate?
+    var date : Int?
     
     var temp : Double?
     
     var description : String?
     var season: String?
     
-    init(clouds:Int,pressure:Double,humidity:Int,rain:Double,date:NSDate,temp:Double,description:String,season:String){
+    init(clouds:Int,pressure:Double,humidity:Int,rain:Double,date:Int,temp:Double,description:String,season:String,speed:Double){
         self.clouds = clouds
         self.pressure = pressure
         self.humidity = humidity
@@ -56,6 +56,7 @@ class CityWeatherListModel {
         self.temp = temp
         self.description = description
         self.season = season
+        self.speed = speed
     }
 
 }

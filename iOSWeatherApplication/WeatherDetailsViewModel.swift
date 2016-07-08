@@ -59,7 +59,7 @@ class WeatherDetailsViewModel {
         for var i = 0; i<list.count ; i++ {
             //list
             
-            var wetherListData = list[i]
+            let wetherListData = list[i]
             
             
             let clouds = wetherListData.objectForKey("clouds")?.integerValue ?? 0
@@ -76,8 +76,8 @@ class WeatherDetailsViewModel {
             
             // cityWeatherListModel?.date = date
             
-            let description = weather.objectAtIndex(0).objectForKey("description") as! String ?? "not available"
-            let season = weather.objectAtIndex(0).objectForKey("main") as! String ?? "not available"
+            let description = weather.objectAtIndex(0).objectForKey("description") as? String ?? "not available"
+            let season = weather.objectAtIndex(0).objectForKey("main") as? String ?? "not available"
             let dayTemperature = tempertature.objectForKey("day")?.doubleValue ?? 0.0
             
             cityWeatherListModel = CityWeatherListModel(clouds: clouds, pressure: pressure, humidity: humidity, rain: rain, date: date, temp: dayTemperature, description: description, season: season,speed: speed)
@@ -117,7 +117,6 @@ class WeatherDetailsViewModel {
         let dateNSdate = NSDate(timeIntervalSince1970: Double(list.date!))
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        print(dateFormatter.stringFromDate(dateNSdate))
         
         self.date = dateFormatter.stringFromDate(dateNSdate)
         

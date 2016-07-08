@@ -16,7 +16,6 @@ class WeatherDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var rainLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
-    @IBOutlet weak var wetherIcon: UIImageView!
     
     
     

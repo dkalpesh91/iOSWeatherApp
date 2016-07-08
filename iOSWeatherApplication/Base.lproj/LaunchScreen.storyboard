@@ -14,14 +14,43 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Application" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cM-jp-Odw">
+                                <rect key="frame" x="65" y="350" width="285" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="285" id="47H-a8-YKh"/>
+                                    <constraint firstAttribute="height" constant="35" id="7yG-la-GyX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatherappcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="9cD-Kf-1sr">
+                                <rect key="frame" x="156" y="231" width="102" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="102" id="EjW-mm-Sng"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.19511607892506577" green="0.65361236786088706" blue="0.684185606" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="9cD-Kf-1sr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8vJ-en-dcF"/>
+                            <constraint firstItem="0cM-jp-Odw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9Ma-zX-Pe3"/>
+                            <constraint firstItem="0cM-jp-Odw" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Xay-P3-m9c"/>
+                            <constraint firstItem="0cM-jp-Odw" firstAttribute="top" secondItem="9cD-Kf-1sr" secondAttribute="bottom" constant="27" id="dwc-tj-CAR"/>
+                            <constraint firstItem="9cD-Kf-1sr" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="211" id="f7Z-oG-lFr"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="weatherappcon.png" width="512" height="512"/>
+    </resources>
 </document>

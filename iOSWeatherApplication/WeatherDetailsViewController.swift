@@ -32,7 +32,7 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
             weatherDetailsViewModel.getData(weatherDetailsData!)
             weatherDetailsViewModel.getCityDetails()
             cityNameLabel.text = weatherDetailsViewModel.cityName
-            numberOfDaysWetherShowLabel.text = String(weatherDetailsViewModel.countDays!)
+            numberOfDaysWetherShowLabel.text = "Weather details of \(String(weatherDetailsViewModel.countDays!) ) days"
             countryCodeLable.text = weatherDetailsViewModel.countryCode
         }
     }
@@ -61,20 +61,14 @@ class WeatherDetailsViewController: UIViewController,UITableViewDataSource,UITab
         let date  = UILabel(frame: CGRectMake(120,-5,300,44))
         let weatherDate  = UILabel(frame: CGRectMake(120,15,300,44))
         
-        
-        
-        
         let DynamicView=UIView(frame: CGRectMake(0,0,0,0))
         DynamicView.backgroundColor = UIColor(red: 0.663, green: 0.761, blue: 0.761, alpha: 1)
         DynamicView.layer.borderWidth = 1
         DynamicView.layer.cornerRadius = 5
         
-        if weatherDetailsData != nil {
-        //    self.setDate()
-          //  self.setDate((weatherDetailsData?.objectForKey("list")? as NSArray.[section].objectForKey("dt") as DataFormat)
-        }
         
-        let rupees = "(\u{20B9})"
+        
+        
         
         weatherDetailsViewModel.getListData(section)
             date.textColor = UIColor.orangeColor()

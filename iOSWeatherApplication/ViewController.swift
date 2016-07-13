@@ -40,7 +40,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,CityWeatherResp
     }
     
     @IBAction func submitButtonAction(sender: AnyObject) {
-        
+        self.cityTextField.resignFirstResponder();
         self.retrieveWeatherForecast()
         
     }

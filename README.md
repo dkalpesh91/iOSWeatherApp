@@ -4,16 +4,16 @@ These are screen shots for application.
 
 This is LaunchScreen
 
-![launch](https://cloud.githubusercontent.com/assets/18364515/16730237/75d8b88a-478f-11e6-961e-7c28863705c1.png)
+![screens](https://cloud.githubusercontent.com/assets/18364515/17202046/4ec49a7a-54b4-11e6-83a8-7f1513a22744.png)
 
 
 
 This is city search screen
 
-![home](https://cloud.githubusercontent.com/assets/18364515/16730250/85718592-478f-11e6-8b6d-ef885e61571c.png)
+![home](https://cloud.githubusercontent.com/assets/18364515/17202044/4eb97d02-54b4-11e6-8ed3-2d8fa3843794.png)
 
 
 
 This is 14 days weather report for search city.
 
-![wetherdetails](https://cloud.githubusercontent.com/assets/18364515/16730267/966fe578-478f-11e6-98ae-3210c953d77b.png)
+![showweatherlist](https://cloud.githubusercontent.com/assets/18364515/17202045/4ebdf346-54b4-11e6-848b-b52f96d0fcf8.png)
